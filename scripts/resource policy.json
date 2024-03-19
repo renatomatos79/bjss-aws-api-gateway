@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "execute-api:Invoke",
+      "Resource": "arn:aws:execute-api:us-east-1:992382569486:1k9ggr35e1/*/*/*"
+    },
+    {
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "execute-api:Invoke",
+      "Resource": "arn:aws:execute-api:us-east-1:992382569486:1k9ggr35e1/*/*/*",
+      "Condition": {
+        "NotIpAddress": {
+          "aws:SourceIp": "89.180.236.241"
+        }
+      }
+    }
+  ]
+}
