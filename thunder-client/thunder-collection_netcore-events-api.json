@@ -1,0 +1,174 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "netcore-events-api",
+    "collectionId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+    "dateExported": "2024-09-18T06:17:20.549Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "bc7944c8-0987-48ea-9988-45eee7f6a286",
+            "colId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+            "containerId": "",
+            "name": "admin-token",
+            "url": "{{API_URL}}/api/token",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-08-25T18:46:17.630Z",
+            "modified": "2024-09-17T02:27:25.729Z",
+            "headers": [
+                {
+                    "name": "X-Server",
+                    "value": ""
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"username\": \"{{ADMIN_LOGIN}}\",\n    \"password\": \"{{ADMIN_PASSWORD}}\"\n}",
+                "form": []
+            },
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "// Gets JSON Response Content",
+                            "const jsonResponse = tc.response.text; ",
+                            "",
+                            "// Set environment variables",
+                            "tc.setVar(\"ADMIN_TOKEN\", jsonResponse);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c593ae68-bf07-4ab1-b46e-c596696c9d24",
+            "colId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+            "containerId": "",
+            "name": "admin-events-create",
+            "url": "{{API_URL}}/api/events",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2024-08-25T18:48:17.102Z",
+            "modified": "2024-09-17T02:28:12.889Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer {{ADMIN_TOKEN}}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Server",
+                    "value": ""
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"timeout\": 1200,\n  \"events\": \n  [\n        {\n            \"Id\": 1,\n            \"Title\": \"Introduction to Artificial Intelligence\",\n            \"Content\": \"Join us for an overview of AI concepts and applications.\",\n            \"Speaker\": \"Dr. John Smith\",\n            \"Date\": \"2024-04-10T10:00:00\"\n        },\n        {\n            \"Id\": 2,\n            \"Title\": \"Machine Learning Workshop\",\n            \"Content\": \"Hands-on workshop covering various machine learning algorithms.\",\n            \"Speaker\": \"Dr. Emily Johnson\",\n            \"Date\": \"2024-04-15T13:30:00\"\n        },\n        {\n            \"Id\": 3,\n            \"Title\": \"Blockchain Technology: Beyond Cryptocurrency\",\n            \"Content\": \"Exploring the potential of blockchain in various industries.\",\n            \"Speaker\": \"Mr. Alex Brown\",\n            \"Date\": \"2024-04-20T11:00:00\"\n        },\n        {\n            \"Id\": 4,\n            \"Title\": \"Cybersecurity Best Practices\",\n            \"Content\": \"Learn about the latest cybersecurity threats and how to mitigate them.\",\n            \"Speaker\": \"Dr. Sarah Lee\",\n            \"Date\": \"2024-04-25T14:00:00\"\n        },\n        {\n            \"Id\": 5,\n            \"Title\": \"Big Data Analytics Symposium\",\n            \"Content\": \"Bringing together experts to discuss the challenges and opportunities in big data analytics.\",\n            \"Speaker\": \"Dr. Michael Wang\",\n            \"Date\": \"2024-05-05T09:30:00\"\n        },\n        {\n            \"Id\": 6,\n            \"Title\": \"Internet of Things (IoT) Innovation Summit\",\n            \"Content\": \"Explore the latest innovations and trends in the Internet of Things space.\",\n            \"Speaker\": \"Mr. James Adams\",\n            \"Date\": \"2024-05-10T10:30:00\"\n        },\n        {\n            \"Id\": 7,\n            \"Title\": \"Ethical AI: Principles and Practices\",\n            \"Content\": \"Discussing ethical considerations in the development and deployment of AI systems.\",\n            \"Speaker\": \"Dr. Emily Johnson\",\n            \"Date\": \"2024-05-15T13:00:00\"\n        },\n        {\n            \"Id\": 8,\n            \"Title\": \"Future of Work: Adapting to Technological Changes\",\n            \"Content\": \"Examining how technology is reshaping the workplace and strategies for adaptation.\",\n            \"Speaker\": \"Ms. Sophia Miller\",\n            \"Date\": \"2024-05-20T11:30:00\"\n        },\n        {\n            \"Id\": 9,\n            \"Title\": \"Quantum Computing: Breaking the Boundaries\",\n            \"Content\": \"An overview of quantum computing principles and its potential applications.\",\n            \"Speaker\": \"Dr. David Chen\",\n            \"Date\": \"2024-05-25T14:30:00\"\n        },\n        {\n            \"Id\": 10,\n            \"Title\": \"Augmented Reality in Education\",\n            \"Content\": \"Exploring how AR technology can enhance learning experiences.\",\n            \"Speaker\": \"Mr. Alex Brown\",\n            \"Date\": \"2024-06-05T09:00:00\"\n        },\n        {\n            \"Id\": 11,\n            \"Title\": \"Data Privacy: Challenges and Solutions\",\n            \"Content\": \"Discussing the importance of data privacy and strategies for protecting personal information.\",\n            \"Speaker\": \"Dr. Sarah Lee\",\n            \"Date\": \"2024-06-10T10:00:00\"\n        },\n        {\n            \"Id\": 12,\n            \"Title\": \"Deep Learning Applications in Healthcare\",\n            \"Content\": \"Exploring how deep learning is revolutionizing healthcare delivery and patient outcomes.\",\n            \"Speaker\": \"Dr. Michael Wang\",\n            \"Date\": \"2024-06-15T13:45:00\"\n        },\n        {\n            \"Id\": 13,\n            \"Title\": \"Smart Cities: Building Sustainable Urban Environments\",\n            \"Content\": \"Examining the role of technology in creating smarter and more sustainable cities.\",\n            \"Speaker\": \"Mr. James Adams\",\n            \"Date\": \"2024-06-20T11:15:00\"\n        },\n        {\n            \"Id\": 14,\n            \"Title\": \"Artificial General Intelligence: The Next Frontier\",\n            \"Content\": \"A discussion on the future prospects and challenges of achieving AGI.\",\n            \"Speaker\": \"Dr. John Smith\",\n            \"Date\": \"2024-06-25T14:15:00\"\n        },\n        {\n            \"Id\": 15,\n            \"Title\": \"Cloud Computing: Trends and Innovations\",\n            \"Content\": \"An overview of the latest trends and innovations in cloud computing.\",\n            \"Speaker\": \"Ms. Sophia Miller\",\n            \"Date\": \"2024-07-05T09:45:00\"\n        },\n        {\n            \"Id\": 16,\n            \"Title\": \"Robotics in Industry 4.0\",\n            \"Content\": \"Exploring the role of robotics in the fourth industrial revolution.\",\n            \"Speaker\": \"Dr. David Chen\",\n            \"Date\": \"2024-07-10T10:45:00\"\n        },\n        {\n            \"Id\": 17,\n            \"Title\": \"Digital Transformation: Strategies for Success\",\n            \"Content\": \"Discussing strategies for successful digital transformation initiatives.\",\n            \"Speaker\": \"Dr. Sarah Lee\",\n            \"Date\": \"2024-07-15T13:15:00\"\n        },\n        {\n            \"Id\": 18,\n            \"Title\": \"5G Technology and its Impact\",\n            \"Content\": \"Examining the potential of 5G technology to transform various industries.\",\n            \"Speaker\": \"Mr. Alex Brown\",\n            \"Date\": \"2024-07-20T11:45:00\"\n        },\n        {\n            \"Id\": 19,\n            \"Title\": \"The Future of Transportation: Innovations and Challenges\",\n            \"Content\": \"Exploring emerging technologies and challenges in the transportation sector.\",\n            \"Speaker\": \"Dr. Emily Johnson\",\n            \"Date\": \"2024-07-25T14:45:00\"\n        },\n        {\n            \"Id\": 20,\n            \"Title\": \"Artificial Intelligence in Finance\",\n            \"Content\": \"An overview of AI applications in the finance industry.\",\n            \"Speaker\": \"Dr. John Smith\",\n            \"Date\": \"2024-08-05T09:15:00\"\n        }\n    ]\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "77b97b80-1ed9-42f7-b059-4d9679e53a0f",
+            "colId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+            "containerId": "",
+            "name": "user-token",
+            "url": "{{API_URL}}/api/token",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-08-25T18:46:59.155Z",
+            "modified": "2024-09-16T23:50:52.502Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"username\": \"{{USER_LOGIN}}\",\n    \"password\": \"{{USER_PASSWORD}}\"\n}",
+                "form": []
+            },
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "// Gets JSON Response Content",
+                            "const jsonResponse = tc.response.text; ",
+                            "",
+                            "// Set environment variables",
+                            "tc.setVar(\"USER_TOKEN\", jsonResponse);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "86353108-66d5-4d10-9b03-e06d365df4fc",
+            "colId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+            "containerId": "",
+            "name": "user-events-list",
+            "url": "{{API_URL}}/api/events",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-08-25T18:54:24.704Z",
+            "modified": "2024-09-16T23:50:57.328Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer {{USER_TOKEN}}"
+                }
+            ]
+        },
+        {
+            "_id": "a2055e8c-a3d5-4c3b-bf4b-85f5aac455f2",
+            "colId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+            "containerId": "",
+            "name": "user-events-subscribe",
+            "url": "{{API_URL}}/api/events/{{EVENT_ID}}/subscribe",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-08-25T18:50:46.119Z",
+            "modified": "2024-09-16T23:51:01.894Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer {{USER_TOKEN}}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"timeout\": 0\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ebc52867-1c7c-4207-9c96-1c7117c5b0b2",
+            "colId": "0d1c6814-f9d4-4354-b663-fc647e2a8c6b",
+            "containerId": "",
+            "name": "user-events-unsubscribe",
+            "url": "{{API_URL}}/api/events/{{EVENT_ID}}",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-08-31T20:49:48.485Z",
+            "modified": "2024-09-16T23:51:06.334Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer {{USER_TOKEN}}"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        }
+    ],
+    "ref": "a0Jax4CndW8XcqR6xGbieqOA2tij5SvUro4aAlIK_mpRb9wD67mvnuoa_GeDjuU775Q4TsEUpA3RfSnDY1tZBQ"
+}
