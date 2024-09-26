@@ -11,25 +11,24 @@ docker rm redisserver
 docker run --name redisserver -d --network=backend-bridge-network -p 6379:6379 redis
 ```
 
-# Building and Deploy a Docker Image vue3-events-app-backend
+# Building and Deploy a Docker Image events-backend
 
 ```sh
-docker build -t vue3-events-app-backend:8.0.1 .
-docker tag vue3-events-app-backend:8.0.1 renatomatos79/vue3-events-app-backend:8.0.1
+docker build -t events-backend:8.0.1 .
+docker tag events-backend:8.0.1 renatomatos79/events-backend:8.0.1
 docker login
-docker push renatomatos79/vue3-events-app-backend:8.0.1
-docker run -d --network=backend-bridge-network --name vue3-events-app-backend-8.0.1 -p 8080:8080 renatomatos79/vue3-events-app-backend:8.0.1
-docker container logs vue3-events-app-backend
+docker push renatomatos79/events-backend:8.0.1
+docker run -d --network=backend-bridge-network --name events-backend-8.0.1 -p 8080:8080 renatomatos79/events-backend:8.0.1
+docker container logs events-backend
 ```
 
 # Running backend using Amazon Elastic Cache from ECR
 
 ```sh
-docker container rm vue3-events-app-backend-8.0.1 --force
-docker run -d --name vue3-events-app-backend-8.0.1 -e REDIS_HOST_TYPE=REDIS_AMAZON_OSS -e REDIS_HOST='clustercfg.awsredis.uzxmqs.use1.cache.amazonaws.com:6379' -p 8086:8080 992382569486.dkr.ecr.us-east-1.amazonaws.com/aws-udemy:vue3-events-app-backend-8.0.1
-docker container logs vue3-events-app-backend-8.0.1
+docker container rm events-backend-8.0.1 --force
+docker run -d --name events-backend-8.0.1 -e REDIS_HOST_TYPE=REDIS_AMAZON_OSS -e REDIS_HOST='clustercfg.awsredis.uzxmqs.use1.cache.amazonaws.com:6379' -p 8086:8080 992382569486.dkr.ecr.us-east-1.amazonaws.com/aws-udemy:events-backend-8.0.1
+docker container logs events-backend-8.0.1
 ```
-
 
 # event list
 

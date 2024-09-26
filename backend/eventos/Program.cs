@@ -5,8 +5,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ServiceStack.Redis;
 
-const string ALLOW_ANY_REQUEST = "ALLOW_ALL";
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
@@ -65,14 +63,6 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(ALLOW_ANY_REQUEST, builder =>
-    {
-        builder.WithOrigins("*").AllowAnyHeader().WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
-    });
-});
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -117,8 +107,4 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
-// Use CORS middleware
-app.UseCors(ALLOW_ANY_REQUEST);
-
 app.Run();

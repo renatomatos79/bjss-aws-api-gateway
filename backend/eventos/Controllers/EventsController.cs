@@ -1,7 +1,6 @@
 using eventsapi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static ServiceStack.Text.RecyclableMemoryStreamManager;
 
 namespace eventsapi.Controllers;
 
@@ -115,7 +114,7 @@ public class EventsController : ControllerBase
         var selectedEvent = GetEventById(id);
         if (selectedEvent == null)
         {
-          return NotFound();
+            return await Task.FromResult(NotFound());
         }
 
         // update user events
@@ -135,13 +134,13 @@ public class EventsController : ControllerBase
         var selectedEvent = GetEventById(id);
         if (selectedEvent == null)
         {
-            return NotFound();
+            return await Task.FromResult(NotFound());
         }
 
         // update user events
         RemoveFromUserEvents(selectedEvent);
 
         // returns the selected event
-        return NoContent();
+        return await Task.FromResult(NoContent());
     }
 }
