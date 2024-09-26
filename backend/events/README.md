@@ -14,11 +14,11 @@ docker run --name redisserver -d --network=backend-bridge-network -p 6379:6379 r
 # Building and Deploy a Docker Image events-backend
 
 ```sh
-docker build -t events-backend:8.0.1 .
-docker tag events-backend:8.0.1 renatomatos79/events-backend:8.0.1
+docker build -t events-backend:8.0.2 .
+docker tag events-backend:8.0.2 renatomatos79/events-backend:8.0.2
 docker login
-docker push renatomatos79/events-backend:8.0.1
-docker run -d --network=backend-bridge-network --name events-backend-8.0.1 -p 8081:8080 renatomatos79/events-backend:8.0.1
+docker push renatomatos79/events-backend:8.0.2
+docker run -d --network=backend-bridge-network --name events-backend-8.0.2 -p 8081:8080 renatomatos79/events-backend:8.0.2
 docker container logs events-backend
 ```
 

@@ -96,6 +96,36 @@ public class EventsController : ControllerBase
         return await Task.FromResult(Ok(result));
     }
 
+    [HttpGet("events/{id}")]
+    public async Task<IActionResult> GetEvent(int id)
+    {
+        var cache = cacheManager.Get<List<EventResponse>>(GlobalConstants.REDIS_EVENTS_KEY);
+
+        // if no items in cache
+        if (cache?.Item == null) 
+        {
+            return await Task.FromResult(NotFound());
+        }
+
+        // filter
+        var item = cache?.Item.FirstOrDefault(f => f.Id == id);
+            
+        // if item not found
+        if (item == null) 
+        {
+            return await Task.FromResult(NotFound());
+        }
+
+        // update response cache timeout
+        this.httpContextAccessor.UpdateMaxAge(cache.MaxAgeInSeconds);
+            
+        // udpate Subscribed field from cache list content
+        var result = UpdateSubscribed(new List<EventResponse> { item })[0];
+        
+        // if no cache, returns an empty list
+        return await Task.FromResult(Ok(result));
+    }
+
     [HttpPost("events")]
     public async Task<IActionResult> AddEvents([FromBody] EventRequest request)
     {
