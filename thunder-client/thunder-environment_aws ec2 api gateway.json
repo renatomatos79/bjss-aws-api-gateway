@@ -2,12 +2,16 @@
     "clientName": "Thunder Client",
     "environmentName": "aws ec2 api gateway",
     "environmentId": "fca1c1c7-1a44-4d68-9a8b-d40700763e8d",
-    "dateExported": "2024-09-18T06:16:45.941Z",
+    "dateExported": "2024-09-26T19:48:02.193Z",
     "version": "1.2",
     "variables": [
         {
-            "name": "API_URL",
-            "value": "http://54.91.85.31:8080"
+            "name": "LOGIN_API_URL",
+            "value": "http://54.88.32.51:8080"
+        },
+        {
+            "name": "EVENTS_API_URL",
+            "value": "http://54.88.32.51:8081"
         },
         {
             "name": "USER_TOKEN",
@@ -38,5 +42,5 @@
             "value": "1"
         }
     ],
-    "ref": "NW25LRsmH1tCa0syxkHHi_FLdzW7OSAhGQHN6tnRFrdxBADafMmxE0Y1leuOOxlP"
+    "ref": "NW25LRsmH1tCa0syxkHHizMQw6H0WpI-7yx78nIJDTR-K04r1itJTUu_O7SfzP0z"
 }
