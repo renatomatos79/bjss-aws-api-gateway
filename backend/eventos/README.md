@@ -18,7 +18,7 @@ docker build -t events-backend:8.0.1 .
 docker tag events-backend:8.0.1 renatomatos79/events-backend:8.0.1
 docker login
 docker push renatomatos79/events-backend:8.0.1
-docker run -d --network=backend-bridge-network --name events-backend-8.0.1 -p 8080:8080 renatomatos79/events-backend:8.0.1
+docker run -d --network=backend-bridge-network --name events-backend-8.0.1 -p 8081:8080 renatomatos79/events-backend:8.0.1
 docker container logs events-backend
 ```
 
