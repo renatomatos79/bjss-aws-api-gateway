@@ -1,0 +1,14 @@
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\TokenGeneratorLambda.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\TokenGeneratorLambda.deps.json
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\TokenGeneratorLambda.runtimeconfig.json
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\TokenGeneratorLambda.pdb
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Amazon.Lambda.Core.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.IdentityModel.Abstractions.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.IdentityModel.Logging.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.IdentityModel.Protocols.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\Microsoft.IdentityModel.Tokens.dll
+C:\projetos\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda\bin\Release\net8.0\publish\System.IdentityModel.Tokens.Jwt.dll

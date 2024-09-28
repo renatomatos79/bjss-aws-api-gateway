@@ -1,0 +1,125 @@
+Create a user named udemy_lamba_deploy com policy AWSLambda_FullAccess
+- AKIA6ODU4JQHB6DW72MG
+- NiWbEG7HTZ7GiW9RdeHIY5vbt/Qc3onqBit2lpNs
+
+Create a role named udemy_execution_role
+Set type to be AWS Service / Lambda 
+set permission to be AWSLambdaBasicExecutionRole
+
+set trust policy to be 
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+Ir para a pasta
+\bjss-aws-api-gateway\lambda functions
+
+Instalar
+dotnet tool install -g Amazon.Lambda.Tools
+dotnet lambda --version
+
+
+Criar o projeto
+dotnet new install Amazon.Lambda.Templates
+dotnet new lambda.EmptyFunction --name TokenGeneratorLambda
+
+
+Ir para a pasta
+\bjss-aws-api-gateway\lambda functions\TokenGeneratorLambda\src\TokenGeneratorLambda
+dotnet add package Amazon.Lambda.Core
+dotnet add package Amazon.Lambda.Serialization.SystemTextJson
+dotnet add package System.IdentityModel.Tokens.Jwt:6.35.0
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer:6.0.28
+
+Edite o arquivo Function.cs
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Amazon.Lambda.Core;
+using Microsoft.IdentityModel.Tokens;
+
+// Lambda function handler
+public class Function
+{
+    public string FunctionHandler(TokenRequest request, ILambdaContext context)
+    {
+        return GenerateToken(request);
+    }
+
+    private string GenerateToken(TokenRequest request)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(request.SecretKey));
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+        var claims = new[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, request.Username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+        var token = new JwtSecurityToken(
+            issuer: request.Issuer,
+            audience: request.Audience,
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(30),
+            signingCredentials: credentials);
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+}
+
+public class TokenRequest
+{
+    public string Username { get; set; }
+    public string SecretKey { get; set; }
+    public string Issuer { get; set; }
+    public string Audience { get; set; }
+}
+
+
+Edite o arquivo aws-lambda-tools-defaults.json
+{
+  "Information": [
+    "Configuration for AWS Lambda function."
+  ],
+  "profile": "",
+  "region": "us-east-1",
+  "configuration": "Release",
+  "function-name": "TokenGeneratorLambda",
+  "function-role": "arn:aws:iam::992382569486:role/udemy_execution_role",
+  "tracing-mode": "PassThrough",
+  "environment-variables": "",
+  "function-architecture": "x86_64",
+  "function-runtime": "dotnet8",
+  "function-memory-size": 512,
+  "function-timeout": 30,
+  "function-handler": "TokenGeneratorLambda::TokenGeneratorLambda.Function::FunctionHandler"
+}
+
+
+deploy our lambda function 
+
+dotnet restore
+dotnet build
+dotnet lambda deploy-function TokenGeneratorLambda
+
+Test your function
+
+Event name: TestingAdminToken
+Event Json
+{
+  "Username": "admin",
+  "Password": "admin"
+}
+
