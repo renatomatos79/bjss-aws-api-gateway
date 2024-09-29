@@ -8,7 +8,7 @@ docker network create --driver bridge backend-bridge-network
 
 ```sh
 docker rm redisserver
-docker run --name redisserver -d --network=backend-bridge-network -p 6379:6379 redis
+docker run --name redisserver --restart unless-stopped -d --network=backend-bridge-network -p 6379:6379 redis
 ```
 
 # Building and Deploy a Docker Image events-backend
@@ -18,7 +18,7 @@ docker build -t events-backend:8.0.2 .
 docker tag events-backend:8.0.2 renatomatos79/events-backend:8.0.2
 docker login
 docker push renatomatos79/events-backend:8.0.2
-docker run -d --network=backend-bridge-network --name events-backend-8.0.2 -p 8081:8080 renatomatos79/events-backend:8.0.2
+docker run -d --network=backend-bridge-network --restart unless-stopped --name events-backend-8.0.2 -p 8081:8080 renatomatos79/events-backend:8.0.2
 docker container logs events-backend
 ```
 
