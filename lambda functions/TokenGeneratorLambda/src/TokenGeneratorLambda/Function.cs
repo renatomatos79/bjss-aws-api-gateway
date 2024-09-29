@@ -25,17 +25,20 @@ namespace TokenGeneratorLambda
         
         public APIGatewayProxyResponse FunctionHandler(TokenRequest request, ILambdaContext context)
         {
-            if (request == null || !request.isValid())
+            // Bad request when request is null or invalid
+            if (request == null || request.isValid() == false)
             {
-                throw new ArgumentNullException("Request is not valid.");
+                return CreateGatewayResponse(400, JsonSerializer.Serialize(new { Message = "Request is not valid" }));
             }
 
+            // Not Authorized when user is not found
             var user = Users.FirstOrDefault(u => u.Username == request.Username && u.Password == request.Password);
             if (user == null)
             {
-                return UnauthorizedResponse();
+                return CreateGatewayResponse(401, JsonSerializer.Serialize(new { Message = "Unauthorized" }));
             }
             
+            // Generate token when user is found
             var tcr = new TokenCreateRequest
             {
                 Username = request.Username,
@@ -47,15 +50,10 @@ namespace TokenGeneratorLambda
                 Audience = "https://bjss-aws.pt"
             };
 
-            return new APIGatewayProxyResponse
-            {
-                StatusCode = 200,
-                Body = GenerateToken(tcr),
-                Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-            };            
+            return  CreateGatewayResponse(200, GenerateToken(tcr));
         }
 
-        public string GenerateToken(TokenCreateRequest tokenRequest)
+        private string GenerateToken(TokenCreateRequest tokenRequest)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenRequest.SecretKey ?? ""));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -79,12 +77,12 @@ namespace TokenGeneratorLambda
             return tokenHandler.WriteToken(token);
         }
 
-        private APIGatewayProxyResponse UnauthorizedResponse()
+        private APIGatewayProxyResponse CreateGatewayResponse(int statusCode, string body)
         {
             return new APIGatewayProxyResponse
             {
-                StatusCode = 401,
-                Body = JsonSerializer.Serialize(new { Message = "Unauthorized" }),
+                StatusCode = statusCode,
+                Body = body,
                 Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
             };
         }
@@ -94,6 +92,7 @@ namespace TokenGeneratorLambda
     {
         public required string Username { get; set; }
         public required string Password { get; set; }
+         // to be a valid request, both username and password must be provided
          public bool isValid() 
         {
             return !string.IsNullOrEmpty(this.Username) && !string.IsNullOrEmpty(this.Password);
