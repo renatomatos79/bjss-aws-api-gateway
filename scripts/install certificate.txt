@@ -1,0 +1,44 @@
+sudo apt update
+sudo apt-get install openssl
+
+mkdir certificate
+cd certificate
+openssl genrsa -out ec2-token.key 2048
+openssl req -new -key ec2-token.key -out ec2-certificate.csr
+
+Country Name: US
+State: Virginia
+Locality Name: Richmond
+Organization Name: EC2 Aws Api Gateway Strategies
+Common Name: The domain name or hostname for which the certificate is intended: ec2.aws-hosting-strategies.com
+Email: admin@ec2.aws-hosting-strategies.com
+
+DO NOT PROVIDE EXPORT PASSWORD
+
+Use the private key and the CSR to generate a self-signed certificate valid for, say, 365 days:
+openssl x509 -req -days 365 -in ec2-certificate.csr -signkey ec2-token.key -out ec2-self-signed-cert.crt
+
+output:
+Certificate request self-signature ok
+subject=C = US, ST = Virginia, L = Richmond, O = EC2 Aws Api Gateway Strategies, CN = ec2.aws-hosting-strategies.com, emailAddress = admin@ec2.aws-hosting-strategies.com
+
+
+Convert to PFX Format
+openssl pkcs12 -export -out ec2-certificate.pfx -inkey ec2-token.key -in ec2-self-signed-cert.crt
+
+DO NOT PROVIDE EXPORT PASSWORD
+
+COPYING CERTIFICATE FROM UBUNTO TO LOCAL MACHINE
+
+scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://home/ubuntu/certificate/ec2-certificate.pfx C:\Users\rmatos\.ssh\certificate\
+scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://home/ubuntu/certificate/ec2-certificate.csr C:\Users\rmatos\.ssh\certificate\
+scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://home/ubuntu/certificate/ec2-self-signed-cert.crt C:\Users\rmatos\.ssh\certificate\
+scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://home/ubuntu/certificate/ec2-token.key C:\Users\rmatos\.ssh\certificate\
+
+WE ARE ONLY ABLE TO VERIFY  SWAGGER INSTALLING THIS CERTIFICATE ON BROWSER
+bjss-aws-api-gateway\backend\tokenWithCertificate\Certificate\certificate.pfx
+
+
+
+how to disable certification validation for selfsign certifications
+aws apigateway update-integration --rest-api-id vs988bvpxg --resource-id f1qavf --http-method POST --patch-operations "op='replace',path='/tlsConfig/insecureSkipVerification',value=true"
