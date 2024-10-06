@@ -1,0 +1,8 @@
+#if ($input.path('$.statusCode') == 401)
+    #set($context.responseOverride.status = 401)
+#elseif ($input.path('$.statusCode') == 400)
+    #set($context.responseOverride.status = 400)
+#else
+    #set($context.responseOverride.status = 200)
+#end
+$input.path('$.body')
