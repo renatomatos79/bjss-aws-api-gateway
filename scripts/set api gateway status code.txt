@@ -10,13 +10,20 @@ $input.path('$.body')
 
 =============== custom response =================
 
-#if ($input.path('$.statusCode') == 200)
-    #set($context.responseOverride.status = 200)
-    $input.path('$.body')
-#else
+#if ($input.path('$') == 'Cannot GET /petstore/petz')
     #set($context.responseOverride.status = 504)
     {
         "message": "Internal Server Error",
         "statusCode": 504
     }
+#else
+    #set($context.responseOverride.status = 200)
+    {
+        "body": $input.json('$'),
+        "statusCode": 200
+    }
 #end
+
+
+Api Reference:
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#util-template-reference
