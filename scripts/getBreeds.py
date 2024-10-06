@@ -1,36 +1,107 @@
 export const handler = async (event) => {
   const breeds = [
     {
-      "breed": "Fluffywoof",
-      "origin": "Toy Land",
-      "size": "Small",
-      "temperament": ["Playful", "Affectionate", "Energetic"]
+      "name": "Labrador Retriever",
+      "origin": "Canada",
+      "size": "Large"
     },
     {
-      "breed": "Golden Floof",
-      "origin": "Sunny Meadows",
-      "size": "Medium",
-      "temperament": ["Friendly", "Loyal", "Intelligent"]
+      "name": "German Shepherd",
+      "origin": "Germany",
+      "size": "Large"
     },
     {
-      "breed": "Snugglepup",
-      "origin": "Cozy Corner",
-      "size": "Small",
-      "temperament": ["Cuddly", "Gentle", "Sociable"]
+      "name": "Golden Retriever",
+      "origin": "Scotland",
+      "size": "Large"
     },
     {
-      "breed": "Thunderhound",
-      "origin": "Stormy Mountains",
-      "size": "Large",
-      "temperament": ["Brave", "Strong", "Protective"]
+      "name": "Bulldog",
+      "origin": "England",
+      "size": "Medium"
     },
     {
-      "breed": "Spritelytail",
-      "origin": "Enchanted Forest",
-      "size": "Medium",
-      "temperament": ["Playful", "Curious", "Agile"]
+      "name": "Poodle",
+      "origin": "Germany/France",
+      "size": "Medium"
+    },
+    {
+      "name": "Beagle",
+      "origin": "United Kingdom",
+      "size": "Small"
+    },
+    {
+      "name": "Rottweiler",
+      "origin": "Germany",
+      "size": "Large"
+    },
+    {
+      "name": "Yorkshire Terrier",
+      "origin": "England",
+      "size": "Small"
+    },
+    {
+      "name": "Dachshund",
+      "origin": "Germany",
+      "size": "Small"
+    },
+    {
+      "name": "Boxer",
+      "origin": "Germany",
+      "size": "Large"
+    },
+    {
+      "name": "Shih Tzu",
+      "origin": "Tibet/China",
+      "size": "Small"
+    },
+    {
+      "name": "Siberian Husky",
+      "origin": "Russia",
+      "size": "Large"
+    },
+    {
+      "name": "Doberman Pinscher",
+      "origin": "Germany",
+      "size": "Large"
+    },
+    {
+      "name": "Great Dane",
+      "origin": "Germany",
+      "size": "Giant"
+    },
+    {
+      "name": "Chihuahua",
+      "origin": "Mexico",
+      "size": "Small"
+    },
+    {
+      "name": "Pomeranian",
+      "origin": "Germany/Poland",
+      "size": "Small"
+    },
+    {
+      "name": "Maltese",
+      "origin": "Mediterranean Basin",
+      "size": "Small"
+    },
+    {
+      "name": "Cocker Spaniel",
+      "origin": "Spain/United Kingdom",
+      "size": "Medium"
+    },
+    {
+      "name": "Saint Bernard",
+      "origin": "Switzerland",
+      "size": "Giant"
+    },
+    {
+      "name": "Border Collie",
+      "origin": "United Kingdom",
+      "size": "Medium"
     }
   ]
+
   
   // TODO implement
   const response = {
