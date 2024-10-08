@@ -1,4 +1,0 @@
-Setup Git
-sudo apt-get install git​
-git -v
-

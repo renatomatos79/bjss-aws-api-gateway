@@ -1,0 +1,45 @@
+-> Setup Git
+sudo apt-get install git​
+git -v
+
+-> Instalando o Docker
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install docker.io
+sudo systemctl enable --now docker
+docker --version
+sudo usermod -aG docker ubuntu
+
+reconnect
+docker run hello-world
+
+-> Install redis
+docker run --name redisserver -d -p 6379:6379 redis
+
+-> Instalando o .Net Core
+sudo apt update 
+sudo apt install -y wget apt-transport-https ca-certificates
+wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt update
+sudo apt install -y dotnet-sdk-7.0
+
+dotnet --version
+dotnet --list-sdks
+dotnet --list-runtimes
+
+-> Clonar o repositório do projeto
+git clone https://github.com/renatomatos79/vue3-events-app.git
+cd vue3-events-app.git
+
+-> Inicializar o backend
+cd backend 
+dotnet build
+dotnet run
+
+=> forcar o uso da porta 80
+sudo dotnet run --urls "http://*:80"
+
+Nos grupos de segurança Ativar acesso a porta 80 
+
+http://ec2-54-91-114-245.compute-1.amazonaws.com/swagger/index.html
