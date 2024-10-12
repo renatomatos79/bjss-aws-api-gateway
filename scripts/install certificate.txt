@@ -35,10 +35,10 @@ scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazona
 scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://home/ubuntu/certificate/ec2-self-signed-cert.crt C:\Users\rmatos\.ssh\certificate\
 scp -i udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://home/ubuntu/certificate/ec2-token.key C:\Users\rmatos\.ssh\certificate\
 
-WE ARE ONLY ABLE TO VERIFY  SWAGGER INSTALLING THIS CERTIFICATE ON BROWSER
-bjss-aws-api-gateway\backend\tokenWithCertificate\Certificate\certificate.pfx
-
-
 
 how to disable certification validation for selfsign certifications
 aws apigateway update-integration --rest-api-id vs988bvpxg --resource-id f1qavf --http-method POST --patch-operations "op='replace',path='/tlsConfig/insecureSkipVerification',value=true"
+
+send pem file to ec2
+scp -i udemy-aws-hosting-strategy.pem ./udemy-aws-hosting-strategy.pem ubuntu@ec2-98-81-242-203.compute-1.amazonaws.com://tmp
+
