@@ -46,8 +46,8 @@ namespace TokenGeneratorLambda
                 UserId = "1",
                 RoleName = "Admin",
                 SecretKey = "33a19758-19c0-4be4-9582-f010eb7928f4",
-                Issuer = "https://bjss-aws.pt",
-                Audience = "https://bjss-aws.pt"
+                Issuer = "https://aws-hosting-strategies.com",
+                Audience = "https://aws-hosting-strategies.com"
             };
 
             return  CreateGatewayResponse(200, GenerateToken(tcr));
