@@ -1,6 +1,7 @@
 using eventsapi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace eventsapi.Controllers;
 
@@ -91,6 +92,30 @@ public class EventsController : ControllerBase
             this.httpContextAccessor.UpdateMaxAge(cache.MaxAgeInSeconds);
             // udpate Subscribed field from cache list content
             result = UpdateSubscribed(cache.Item);
+        }
+        // if no cache, returns an empty list
+        return await Task.FromResult(Ok(result));
+    }
+
+    [HttpGet("events/subscribed")]
+    public async Task<IActionResult> GetSubscribed()
+    {
+        var cache = cacheManager.Get<List<EventResponse>>(GlobalConstants.REDIS_EVENTS_KEY);
+        var result = new List<EventResponse>();
+        if (cache?.Item != null)
+        {
+            // update response cache timeout
+            this.httpContextAccessor.UpdateMaxAge(cache.MaxAgeInSeconds);
+
+            var userEvents = UserEvents();
+            foreach (var item in cache.Item)
+            {
+                if (userEvents.Contains(item.Id.ToString()))
+                {
+                    item.Subscribed = true;
+                    result.Add(item);
+                }               
+            }
         }
         // if no cache, returns an empty list
         return await Task.FromResult(Ok(result));
