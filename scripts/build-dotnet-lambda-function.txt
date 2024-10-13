@@ -59,4 +59,9 @@ Fazer requisição com nosso template
 }
 
 
-udemy-thunder-client
+How to build a new lambda function
+1) install lambda templates
+dotnet new install Amazon.Lambda.Templates
+
+2) dotnet new lambda.EmptyFunction --name DotNetTest
+3) dotnet lambda deploy-function DotNetTest
