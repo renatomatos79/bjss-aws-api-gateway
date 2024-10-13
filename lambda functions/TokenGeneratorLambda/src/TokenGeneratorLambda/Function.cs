@@ -17,22 +17,22 @@ namespace TokenGeneratorLambda
     // Lambda function handler
     public class Function
     {
-        public static List<TokenCreateRequest> Users = new List<TokenCreateRequest>
+        public static List<TokenCreateRequest> Users { get; set; } = new List<TokenCreateRequest>
         {
             new TokenCreateRequest() { UserId = Guid.NewGuid().ToString(), Username="renato", Password="renato", RoleName = "User" },
             new TokenCreateRequest() { UserId = Guid.NewGuid().ToString(), Username="admin", Password="admin", RoleName = "Admin" }
         };
-        
+
         public APIGatewayProxyResponse FunctionHandler(TokenRequest request, ILambdaContext context)
         {
             // Bad request when request is null or invalid
-            if (request == null || request.isValid() == false)
+            if (request == null || !request.isValid())
             {
                 return CreateGatewayResponse(400, JsonSerializer.Serialize(new { Message = "Request is not valid" }));
             }
 
             // Not Authorized when user is not found
-            var user = Users.FirstOrDefault(u => u.Username == request.Username && u.Password == request.Password);
+            var user = Users.Find(u => u.Username == request.Username && u.Password == request.Password);
             if (user == null)
             {
                 return CreateGatewayResponse(401, JsonSerializer.Serialize(new { Message = "Unauthorized" }));
@@ -47,7 +47,7 @@ namespace TokenGeneratorLambda
                 RoleName = "Admin",
                 SecretKey = "33a19758-19c0-4be4-9582-f010eb7928f4",
                 Issuer = "https://aws-hosting-strategies.com",
-                Audience = "https://aws-hosting-strategies.com"
+                Audience = "https://gtw-token-api.aws-hosting-strategies.com"
             };
 
             return  CreateGatewayResponse(200, GenerateToken(tcr));
