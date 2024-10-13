@@ -44,5 +44,5 @@ resource "aws_api_gateway_integration" "api_token_integration" {
     "integration.request.path.proxy"           = "method.request.path.proxy"
   }
 
-  passthrough_behavior = "WHEN_NO_MATCH"
+  passthrough_behavior = "WHEN_NO_TEMPLATES"
 }

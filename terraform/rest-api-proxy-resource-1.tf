@@ -13,7 +13,7 @@ resource "aws_api_gateway_resource" "api_events" {
 resource "aws_api_gateway_resource" "api_events_proxy" {
   rest_api_id = aws_api_gateway_rest_api.udemy_proxy_api_gateway.id
   parent_id   = aws_api_gateway_resource.api_events.id
-  path_part   = "{proxy+}"
+  path_part   = "{proxy+}"  # This declares the proxy path
 }
 
 # Define the ANY method for /api-events/{proxy+}
@@ -39,13 +39,13 @@ resource "aws_api_gateway_integration" "api_events_integration" {
   type                    = "HTTP"
   uri                     = "http://44.196.119.69:8083/api/{proxy}"
 
-  # Map the request headers and path to the backend
+  # Correctly map the request headers and path to the backend
   request_parameters = {
     "integration.request.header.Authorization" = "method.request.header.Authorization"
     "integration.request.header.Content-Type"  = "method.request.header.Content-Type"
-    "integration.request.path.proxy"           = "method.request.path.proxy"
+    "integration.request.path.proxy"           = "method.request.path.proxy"  # Map proxy path
   }
 
   # Pass through all the remaining client requests
-  passthrough_behavior = "WHEN_NO_MATCH"
+  passthrough_behavior = "WHEN_NO_TEMPLATES"
 }
