@@ -12,7 +12,7 @@ instance_type = "t2.micro"
 ec2_deploy_ami_instance = "ami-0a73cb27671a8277c"
 
 # Replace with your actual key pair name
-ec2_key_name = "udemy-aws-hosting-strategy.pem"
+ec2_key_name = "udemy-aws-hosting-strategy"
 
 # Replace with your actual VPC ID
 vpc_id = "vpc-02060c972ff3b327b"
