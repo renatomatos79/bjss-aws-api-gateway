@@ -1,0 +1,111 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2024-10-13T20:32:58Z",
+    "title" : "Udemy Api Gateway Proxy Resources"
+  },
+  "host" : "proxy-gtw-api.aws-hosting-strategies.com",
+  "basePath" : "/v2",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/api-events/{proxy+}" : {
+      "x-amazon-apigateway-any-method" : {
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "proxy",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          },
+          "400" : {
+            "description" : "400 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          },
+          "500" : {
+            "description" : "500 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          },
+          "401" : {
+            "description" : "401 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          },
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-test" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-token/{proxy+}" : {
+      "x-amazon-apigateway-any-method" : {
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "proxy",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "X-API-VERSION" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
