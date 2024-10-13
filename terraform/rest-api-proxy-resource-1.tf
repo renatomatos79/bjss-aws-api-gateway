@@ -43,7 +43,6 @@ resource "aws_api_gateway_integration" "api_events_integration" {
   request_parameters = {
     "integration.request.header.Authorization" = "method.request.header.Authorization"
     "integration.request.header.Content-Type"  = "method.request.header.Content-Type"
-    "integration.request.path.proxy"           = "method.request.path.proxy"  # Map proxy path
   }
 
   # Pass through all the remaining client requests

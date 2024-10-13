@@ -41,7 +41,6 @@ resource "aws_api_gateway_integration" "api_token_integration" {
   # Map only the Authorization header and path to the backend
   request_parameters = {
     "integration.request.header.Authorization" = "method.request.header.Authorization"
-    "integration.request.path.proxy"           = "method.request.path.proxy"
   }
 
   passthrough_behavior = "WHEN_NO_TEMPLATES"
