@@ -1,5 +1,19 @@
+.: TESTING OUR SERVICES USING CURL :.
+
+-> run the request below to test a single request
+curl -X 'POST' 'http://34.230.36.9:8080/api/token' -H 'accept: text/plain' -H 'Content-Type: application/json' -d '{ "userName": "admin", "password": "admin" }'
+
+-> run the request below to test a single request against api gateway
+curl -X 'POST' 'https://api-gtw.aws-hosting-strategies.com/token' -H 'accept: text/plain' -H 'Content-Type: application/json' -H 'x-api-key: Lw3iMGzOdQ6EPxaE6LcjB4njaNQ7tuDHanaPmuuM' -d '{ "userName": "admin", "password": "admin" }'
+
+.: SETUP TOOLS :.
+
 -> how to install apache2-utils
+sudo apt-get update
 sudo apt-get install apache2-utils
+sudo apt-get install openssl
+
+.: PREPARING APACHE TO RUN THE STRESS TEST :.
 
 -> how to use vi to create data.json file
 vi data.json 
@@ -8,9 +22,18 @@ vi data.json
 -> to save content: ESC -> type -> :x -> ENTER
 { "userName": "admin", "password": "admin" }
 
--> run the request below to test a single request
-curl -X 'POST' 'http://34.230.36.9:8080/api/token' -H 'accept: text/plain' -H 'Content-Type: application/json' -d '{ "userName": "admin", "password": "admin" }'
+-> run the request below to start the stress test against EC2
+ab -n 150000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' http://34.230.36.9:8080/api/token
 
--> run the request below to start the stress test
-ab -n 100000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' http://34.230.36.9:8080/api/token
+-> run the request against api gateway using tls protocol
+ab -n 150000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' -Z TLSv1.2 -k https://api-gtw.aws-hosting-strategies.com/token
 
+-> run the request against api gateway using tls protocol and x-api-key
+ab -n 150000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' -H 'x-api-key: Lw3iMGzOdQ6EPxaE6LcjB4njaNQ7tuDHanaPmuuM' -Z TLSv1.2 -k 'https://api-gtw.aws-hosting-strategies.com/token'
+
+
+Notes:
+Keep Aliving (-k)
+There are situations where you may want to disable Keep-Alive, 
+such as when you want to test the performance of your server under 
+conditions where a new connection is established for every request.
