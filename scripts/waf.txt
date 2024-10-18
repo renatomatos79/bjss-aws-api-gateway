@@ -31,6 +31,10 @@ ab -n 150000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' 
 -> run the request against api gateway using tls protocol and x-api-key
 ab -n 150000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' -H 'x-api-key: Lw3iMGzOdQ6EPxaE6LcjB4njaNQ7tuDHanaPmuuM' -Z TLSv1.2 -k 'https://api-gtw.aws-hosting-strategies.com/token'
 
+WAF DDoS Attach
+This is useful for mitigating application-layer DDoS attacks.
+Define a threshold (e.g., 1,000 requests per 5 minutes) for when to block traffic from a single IP.
+
 
 Notes:
 Keep Aliving (-k)
