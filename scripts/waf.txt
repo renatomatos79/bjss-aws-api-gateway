@@ -1,0 +1,16 @@
+-> how to install apache2-utils
+sudo apt-get install apache2-utils
+
+-> how to use vi to create data.json file
+vi data.json 
+
+-> copy and paste the content below to data.json 
+-> to save content: ESC -> type -> :x -> ENTER
+{ "userName": "admin", "password": "admin" }
+
+-> run the request below to test a single request
+curl -X 'POST' 'http://34.230.36.9:8080/api/token' -H 'accept: text/plain' -H 'Content-Type: application/json' -d '{ "userName": "admin", "password": "admin" }'
+
+-> run the request below to start the stress test
+ab -n 100000 -c 1000 -p data.json -T 'application/json' -H 'accept: text/plain' http://34.230.36.9:8080/api/token
+

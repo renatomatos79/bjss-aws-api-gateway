@@ -5,4 +5,9 @@ resource "aws_api_gateway_rest_api" "udemy_proxy_api_gateway" {
   endpoint_configuration {
     types = ["REGIONAL"]
   }
+   # Tags (optional)
+  tags = {
+    Name = "udemy_proxy_api_gateway"
+    Groups = "udemy"
+  }
 }
