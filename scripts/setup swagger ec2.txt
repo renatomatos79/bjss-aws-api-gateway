@@ -1,0 +1,20 @@
+Execute os comandos abaixo um a um para instalação do docker
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install docker.io
+sudo systemctl enable --now docker
+docker --version
+sudo usermod -aG docker ubuntu
+
+Execute o comando abaixo para criar a nossa rede
+docker network create --driver bridge backend-bridge-network
+
+Execute os comando abaixo para criação do container REDIS
+docker run --restart unless-stopped --name redisserver -d --network=backend-bridge-network -p 6379:6379 redis
+
+Execute os comando abaixo para criação do container associado a api de LOGIN
+docker run --restart unless-stopped -d --network=backend-bridge-network --name login-backend-8.0.1  -p 8081:8080 renatomatos79/login-backend:8.0.1
+
+Execute os comando abaixo para criação do container associado a api de EVENTOS
+docker run --restart unless-stopped -d --network=backend-bridge-network --name events-backend-8.0.3 -p 8082:8080 renatomatos79/events-backend:8.0.3
+
