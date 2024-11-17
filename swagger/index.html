@@ -1,0 +1,137 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Udemy Swagger</title>
+  <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+  <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+  <style>
+    html {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      background: #fafafa;
+    }
+
+    .topbar-wrapper img {
+      display: none;
+    }
+
+    .topbar-wrapper {
+      background-image: url('https://inforplus-swagger-bucket.s3.us-east-1.amazonaws.com/logo.png');
+      background-position: left;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .swagger-ui--hidden {
+      display: none;
+    }
+
+    .swagger-ui {
+      width: 100%! important;
+    }
+
+    /* Modal background styling */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Semi-transparent background */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Modal content box styling */
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      position: relative;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Form input styling */
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    button[type="submit"]:disabled {
+      padding: 10px 15px;
+      background-color: gray;
+      color: black;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 4px;
+    }    
+  </style>
+</head>
+
+<body>
+  <div id="swagger-ui" class="swagger-ui--hidden"></div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" value="admin" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" value="admin" required>
+        <button id="loginBtn" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./swagger-ui-bundle.js"> </script>
+  <script src="./swagger-ui-standalone-preset.js"> </script>
+  <script src="./swagger-ui-auth.js"> </script>
+  
+</body>
+
+</html>
